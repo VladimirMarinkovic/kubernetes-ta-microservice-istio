@@ -5,6 +5,8 @@ This project is based on project https://github.com/VladimirMarinkovic/travel-ag
  **Install Istio on kubernetes cluster** - https://istio.io/docs/setup/install/
  
 * **MySql deployment** - kubectl apply -f deployment-mysql-auth.yaml
+* **Create Secret** - kubectl create secret generic auth-service --from-literal=RDS_PASSWORD=vladatravelagencyauth
+* **Create Configmap** -  kubectl create configmap auth-service --from-literal=RDS_DB_NAME=travelagencyauth --from-   literal=RDS_HOSTNAME=mysql  --from-literal=RDS_PORT="3306" --from-literal=RDS_USERNAME=travelagencyauth-user
 
 * **Auth Service deployment** - kubectl apply -f deployment-auth.yaml
 
