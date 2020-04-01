@@ -38,7 +38,6 @@ This project is based on project https://github.com/VladimirMarinkovic/travel-ag
 ![Jaeger](https://github.com/VladimirMarinkovic/kubernetes-ta-microservice-istio/blob/master/tura-resource-server/src/main/resources/images/jaeger.jpg)
 
 
-
 # Postman Testing
 3. Tour Content Result
 ![Postman](https://github.com/VladimirMarinkovic/kubernetes-ta-microservice-istio/blob/master/tura-resource-server/src/main/resources/images/result.jpg)
