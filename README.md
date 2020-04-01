@@ -1,4 +1,4 @@
-# kubernetes-ta-microservice-istio
+# kubernetes-travel-agency-microservice-istio
 
 This project is based on project https://github.com/VladimirMarinkovic/travel-agency-microservice and configured for kubernetes deployment with Istio service mesh integration.
 
