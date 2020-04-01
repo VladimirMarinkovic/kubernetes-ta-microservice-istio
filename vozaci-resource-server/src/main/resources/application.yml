@@ -1,0 +1,34 @@
+server:
+  port: 8083
+spring:
+  application:
+    name: vozaci-resource-server
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+      h2:
+        console:
+          enabled: true
+  cloud:
+    gcp:
+      trace:
+        enabled: false
+
+security:
+  oauth2:
+    resource:
+      token-info-uri: http://auth-service:8080/oauth/check_token
+
+    client:
+      client-id: vozaci-resource-client
+      client-secret: vozaci-resource-secret
+      authorized-grant-type: password
+      accessTokenUri: http://auth-service:8080/oauth/token
+
+
+#CHANGE - In production reduce sampling-rate to 0.01
+opentracing:
+  jaeger:
+    enable-b3-propagation: true
+    probabilistic-sampler-rate: 1.0

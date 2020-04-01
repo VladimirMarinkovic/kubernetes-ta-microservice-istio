@@ -1,0 +1,77 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: auth-virtual-services
+spec:
+  hosts:
+    - "*"
+  gateways:
+    - http-gateway
+  http:
+    - match:
+        - uri:
+            exact: /oauth/token
+        - uri:
+            prefix: /korisnici/
+      route:
+        - destination:
+            host: auth-service
+            port:
+              number: 8080
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: tura-virtual-services
+spec:
+  hosts:
+    - "*"
+  gateways:
+    - http-gateway
+  http:
+    - match:
+        - uri:
+            prefix: /tura/
+      route:
+        - destination:
+            host: tura-resource-server
+            port:
+              number: 8081
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: putnici-virtual-service
+spec:
+  hosts:
+    - "*"
+  gateways:
+    - http-gateway
+  http:
+    - match:
+        - uri:
+            prefix: /putnicipodaci/
+      route:
+        - destination:
+            host: putnici-resource-server
+            port:
+              number: 8082
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: vozaci-virtual-service
+spec:
+  hosts:
+    - "*"
+  gateways:
+    - http-gateway
+  http:
+    - match:
+        - uri:
+            prefix: /vozac/
+      route:
+        - destination:
+            host: vozaci-resource-server
+            port:
+              number: 8083

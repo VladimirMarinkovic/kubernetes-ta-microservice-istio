@@ -1,0 +1,35 @@
+server:
+  port: 8081
+spring:
+  application:
+    name: tura-resource-server
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+      h2:
+        console:
+          enabled: true
+    cloud:
+      kubernetes:
+        discovery:
+          all-namespaces: true
+      gcp:
+        trace:
+          enabled: false
+security:
+  oauth2:
+    resource:
+      token-info-uri: http://auth-service:8080/oauth/check_token
+    client:
+      client-id: tura-resource-client
+      client-secret: tura-resource-secret
+      authorized-grant-type: password
+      accessTokenUri: http://auth-service:8080/oauth/token
+
+
+# CHANGE - In production reduce sampling-rate to 0.01
+opentracing:
+  jaeger:
+    enable-b3-propagation: true
+    probabilistic-sampler-rate: 1.0

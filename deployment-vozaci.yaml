@@ -1,0 +1,60 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    app: vozaci-resource-server
+  name: vozaci-resource-server
+  namespace: default
+spec:
+  replicas: 1 #CHANGE
+  minReadySeconds: 45
+  selector:
+    matchLabels:
+      app: vozaci-resource-server
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: vozaci-resource-server
+    spec:
+      containers:
+      - image: exxperiment899/vozaci-resource-server-istio:0.0.1-SNAPSHOT
+        imagePullPolicy: IfNotPresent
+        name: vozaci-resource-server
+        env:
+        - name: JAEGER_SERVICE_NAME
+          value: tura-resource-server   #CHANGE
+        - name: JAEGER_AGENT_HOST
+          value: jaeger-agent.istio-system.svc.cluster.local
+        - name: JAEGER_REPORTER_LOG_SPANS
+          value: "true"
+        - name: JAEGER_SAMPLER_TYPE
+          value: const
+        - name: JAEGER_SAMPLER_PARAM
+          value: "1"
+        - name: JAEGER_PROPAGATION
+          value: b3
+      restartPolicy: Always
+      terminationGracePeriodSeconds: 30
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels: #PODS
+    app: vozaci-resource-server
+  name: vozaci-resource-server
+  namespace: default
+spec:
+#  type: LoadBalancer
+  ports:
+  - # nodePort: 30701 #CHANGE
+    port: 8083
+    protocol: TCP
+    targetPort: 8083
+  selector:
+    app: vozaci-resource-server
+  sessionAffinity: None
