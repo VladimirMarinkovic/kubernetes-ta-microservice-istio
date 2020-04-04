@@ -6,7 +6,7 @@ This project is based on project https://github.com/VladimirMarinkovic/travel-ag
  
 * **MySql deployment** - kubectl apply -f deployment-mysql-auth.yaml
 * **Create Secret** - kubectl create secret generic auth-service --from-literal=RDS_PASSWORD=vladatravelagencyauth
-* **Create Configmap** -  kubectl create configmap auth-service --from-literal=RDS_DB_NAME=travelagencyauth --from-   literal=RDS_HOSTNAME=mysql  --from-literal=RDS_PORT="3306" --from-literal=RDS_USERNAME=travelagencyauth-user
+* **Create Configmap** -  kubectl create configmap auth-service --from-literal=RDS_DB_NAME=travelagencyauth --from-     literal=RDS_HOSTNAME=mysql  --from-literal=RDS_PORT="3306" --from-literal=RDS_USERNAME=travelagencyauth-user
 
 * **Auth Service deployment** - kubectl apply -f deployment-auth.yaml
 
@@ -21,7 +21,7 @@ This project is based on project https://github.com/VladimirMarinkovic/travel-ag
 # Observing service mesh with Kiali
 
 * **Create secret** - kubectl create secret generic kiali -n istio-system --from-literal=username=admin --from-literal=passphrase=admin
-* **Port forward** - istioctl dashboard kiali  OR  kubectl -n istio-system  port-forward svc/kiali 20001
+* **Port forward** - istioctl dashboard kiali   **OR**    kubectl -n istio-system  port-forward svc/kiali 20001
 * **Access Kiali** - http://localhost:20001
 
 1. Kiali Dashboard
